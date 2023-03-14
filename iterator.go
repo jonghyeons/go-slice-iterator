@@ -1,12 +1,5 @@
 package go_slice_iterator
 
-func GetIterator[T any](values []T) *Itr[T] {
-	return &Itr[T]{
-		Idx:    0,
-		Values: values,
-	}
-}
-
 type Iterator[T any] interface {
 	HasNext() bool
 	GetNext() *T
@@ -15,6 +8,13 @@ type Iterator[T any] interface {
 type Itr[T any] struct {
 	Idx    int
 	Values []T
+}
+
+func GetIterator[T any](values []T) *Itr[T] {
+	return &Itr[T]{
+		Idx:    0,
+		Values: values,
+	}
 }
 
 var _ Iterator[any] = (*Itr[any])(nil)
